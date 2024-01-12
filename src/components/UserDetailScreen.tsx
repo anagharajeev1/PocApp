@@ -8,7 +8,8 @@ import {setLoggedInUser, updateUsername} from '../../store/actions/userActions';
 interface User {
   username: string;
   email: string;
-  id: number;
+  firstName: string;
+  lastName: string;
 }
 
 const UserDetailScreen: React.FC<any> = ({route}) => {
@@ -51,8 +52,11 @@ const UserDetailScreen: React.FC<any> = ({route}) => {
 
   return (
     <View>
-      <Text style={styles.userDetails}>Username: {updatedUsername}</Text>
+      <Text style={styles.userDetails}>
+        Name: {user.firstName} {user.lastName}
+      </Text>
       <Text style={styles.userDetails}>Email: {user.email}</Text>
+      <Text style={styles.userDetails}>Username: {updatedUsername}</Text>
 
       {isEditMode && (
         <View>
