@@ -19,11 +19,11 @@ describe('SignupScreen', () => {
   //     <SignupScreen navigation={mockNavigation} />,
   //   );
 
-  //   fireEvent.changeText(getByLabelText('First Name'), 'John');
-  //   fireEvent.changeText(getByLabelText('Last Name'), 'Doe');
-  //   fireEvent.changeText(getByLabelText('Username'), 'johndoe');
-  //   fireEvent.changeText(getByLabelText('Email'), 'john.doe@example.com');
-  //   fireEvent.changeText(getByLabelText('Password'), 'password123');
+  //   fireEvent.changeText(getByLabelText('First Name'), 'Lily');
+  //   fireEvent.changeText(getByLabelText('Last Name'), 'James');
+  //   fireEvent.changeText(getByLabelText('Username'), 'lily');
+  //   fireEvent.changeText(getByLabelText('Email'), 'lily@gmail.com');
+  //   fireEvent.changeText(getByLabelText('Password'), 'anagha');
 
   //   fireEvent.press(getByText('Signup'));
 

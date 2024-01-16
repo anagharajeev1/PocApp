@@ -1,6 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {persistStore, persistReducer} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import rootReducer from './reducers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -21,6 +20,4 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store);
-// const persistor = process.env.NODE_ENV !== 'test' && persistStore(store);
-
 export {store, persistor};

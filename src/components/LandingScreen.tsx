@@ -28,7 +28,6 @@ const LandingScreen: React.FC<LandingScreenProps> = ({navigation}) => {
         <View style={{marginTop: 5, width: '60%', alignSelf: 'center'}}>
           <Button
             title="Signup"
-            titleStyle={{color: 'black'}}
             onPress={goToRegistration}
             color="mediumturquoise"
           />

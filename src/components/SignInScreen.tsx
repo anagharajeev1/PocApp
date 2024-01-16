@@ -18,16 +18,29 @@ const SignInScreen = ({navigation}) => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
+  const isValidEmail = email => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const isValidPassword = password => {
+    return password.length >= 6;
+  };
+
   const handleSignIn = async () => {
     setEmailError('');
     setPasswordError('');
 
     if (!email) {
       setEmailError('Email is required');
+    } else if (!isValidEmail(email)) {
+      setEmailError('Invalid email format');
     }
 
     if (!password) {
       setPasswordError('Password is required');
+    } else if (!isValidPassword(password)) {
+      setPasswordError('Password must be at least 6 characters');
     }
 
     if (emailError || passwordError) {
@@ -36,7 +49,7 @@ const SignInScreen = ({navigation}) => {
 
     try {
       const allUsersJSON = await AsyncStorage.getItem('allUserDetails');
-      if (!allUsersJSON) {
+      if (allUsersJSON) {
         Alert.alert('Sign In Failed', 'No user registered. Please sign up.');
         return;
       }

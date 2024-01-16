@@ -24,7 +24,6 @@ const userReducer = (state = initialState, action: any) => {
       console.log('Payload:', action.payload);
       const {email, newUsername} = action.payload;
 
-      // Update the specific user in allUsers array
       const updatedAllUsers = state.allUsers.map((user: User) =>
         user.email === email ? {...user, username: newUsername} : user,
       );
