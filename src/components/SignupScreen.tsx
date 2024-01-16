@@ -166,6 +166,7 @@ const SignupScreen = ({navigation}) => {
               setFirstName(text);
               setFirstNameError('');
             }}
+            accessibilityLabel="First Name"
           />
           <Text style={styles.errorText}>{firstNameError}</Text>
 
@@ -177,6 +178,7 @@ const SignupScreen = ({navigation}) => {
               setLastName(text);
               setLastNameError('');
             }}
+            accessibilityLabel="Last Name"
           />
           <Text style={styles.errorText}>{lastNameError}</Text>
 
@@ -188,6 +190,7 @@ const SignupScreen = ({navigation}) => {
               setUsername(text);
               setUsernameError('');
             }}
+            accessibilityLabel="Username"
           />
           <Text style={styles.errorText}>{usernameError}</Text>
 
@@ -200,6 +203,7 @@ const SignupScreen = ({navigation}) => {
               setEmailError('');
             }}
             keyboardType="email-address"
+            accessibilityLabel="Email"
           />
           <Text style={styles.errorText}>{emailError}</Text>
 
@@ -211,6 +215,7 @@ const SignupScreen = ({navigation}) => {
               setPassword(text);
               setPasswordError('');
             }}
+            accessibilityLabel="Password"
             secureTextEntry
           />
           <Text style={styles.errorText}>{passwordError}</Text>

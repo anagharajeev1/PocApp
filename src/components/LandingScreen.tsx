@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  ImageBackground,
-  StyleSheet,
-} from 'react-native';
+import {View, Button, ImageBackground, StyleSheet} from 'react-native';
 
 interface LandingScreenProps {
   navigation: any;
@@ -28,7 +21,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({navigation}) => {
       source={require('../../images/bg5.jpg')}
       style={styles.backgroundImage}>
       <View style={styles.container}>
-        <View style={{ marginTop: -16,width: '60%', alignSelf: 'center'}}>
+        <View style={{marginTop: -16, width: '60%', alignSelf: 'center'}}>
           <Button title="Login" onPress={goToLogin} color="mediumturquoise" />
         </View>
         <Spacer height={20} />

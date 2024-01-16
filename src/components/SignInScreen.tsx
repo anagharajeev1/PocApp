@@ -71,6 +71,7 @@ const SignInScreen = ({navigation}) => {
               setEmailError('');
             }}
             keyboardType="email-address"
+            accessibilityLabel="Email"
           />
           <Text style={styles.errorText}>{emailError}</Text>
 
@@ -83,6 +84,7 @@ const SignInScreen = ({navigation}) => {
               setPasswordError('');
             }}
             secureTextEntry
+            accessibilityLabel="Password"
           />
           <Text style={styles.errorText}>{passwordError}</Text>
 
