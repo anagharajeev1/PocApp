@@ -68,7 +68,7 @@ const SignInScreen = ({navigation}) => {
       console.error('Error retrieving user details', error);
     }
   };
-  
+
   return (
     <ImageBackground
       source={require('../../images/bg6.jpg')}
@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     marginBottom: 8,
+    marginTop: -8,
   },
   headerText: {
     color: 'blue',
