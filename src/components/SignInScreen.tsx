@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -49,7 +49,7 @@ const SignInScreen = ({navigation}) => {
 
     try {
       const allUsersJSON = await AsyncStorage.getItem('allUserDetails');
-      if (allUsersJSON) {
+      if (!allUsersJSON) {
         Alert.alert('Sign In Failed', 'No user registered. Please sign up.');
         return;
       }

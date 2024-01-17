@@ -85,10 +85,6 @@ const HomeScreen: React.FC<any> = ({route}) => {
     drawerRef?.openDrawer(); 
   };
 
-  const closeDrawer = () => {
-    drawerRef?.closeDrawer(); 
-  };
-
   return (
     <ImageBackground
       source={require('../../images/bg6.jpg')}
