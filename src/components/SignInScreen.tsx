@@ -101,7 +101,7 @@ const SignInScreen = ({navigation}) => {
           />
           <Text style={styles.errorText}>{passwordError}</Text>
 
-          <View style={{marginTop: 15, width: '60%', alignSelf: 'center'}}>
+          <View style={styles.signinStyle}>
             <Button title="Sign In" onPress={handleSignIn} />
           </View>
         </View>
@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
   },
+  signinStyle: {marginTop: 15, width: '60%', alignSelf: 'center'},
   label: {
     fontSize: 16,
     marginBottom: 8,

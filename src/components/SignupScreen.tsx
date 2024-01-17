@@ -232,7 +232,7 @@ const SignupScreen = ({navigation}) => {
           />
           <Text style={styles.errorText}>{confirmPasswordError}</Text>
 
-          <View style={{marginTop: 19, width: 150, marginLeft: 90}}>
+          <View style={styles.buttonStyle}>
             <Button title="Signup" onPress={handleSignup} />
           </View>
         </View>
@@ -245,6 +245,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
   },
+  buttonStyle: {marginTop: 19, width: 150, marginLeft: 90},
   backgroundImage: {
     flex: 40,
     resizeMode: 'cover',

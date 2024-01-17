@@ -14,18 +14,15 @@ const LandingScreen: React.FC<LandingScreenProps> = ({navigation}) => {
     navigation.navigate('Signup');
   };
 
-  const Spacer = ({height}) => <View style={{height}} />;
-
   return (
     <ImageBackground
       source={require('../../images/bg5.jpg')}
       style={styles.backgroundImage}>
       <View style={styles.container}>
-        <View style={{marginTop: -16, width: '60%', alignSelf: 'center'}}>
+        <View style={styles.loginStyle}>
           <Button title="Login" onPress={goToLogin} color="mediumturquoise" />
         </View>
-        <Spacer height={20} />
-        <View style={{marginTop: 5, width: '60%', alignSelf: 'center'}}>
+        <View style={styles.signupStyle}>
           <Button
             title="Signup"
             onPress={goToRegistration}
@@ -43,6 +40,8 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
   },
+  loginStyle: {marginTop: -16, width: '60%', alignSelf: 'center'},
+  signupStyle: {marginTop: 30, width: '60%', alignSelf: 'center'},
   container: {
     flex: 1,
     justifyContent: 'center',

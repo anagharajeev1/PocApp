@@ -3,7 +3,7 @@ import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
-import {setLoggedInUser, updateUsername} from '../../store/actions/userActions';
+import {updateUsername} from '../../store/actions/userActions';
 
 interface User {
   username: string;
@@ -17,7 +17,6 @@ const UserDetailScreen: React.FC<any> = ({route}) => {
   const dispatch = useDispatch();
   const [updatedUsername, setUpdatedUsername] = useState(user.username);
   const [isEditMode, setIsEditMode] = useState(false);
-  const navigation = useNavigation();
 
   const handleUpdateUsername = async () => {
     try {
