@@ -9,9 +9,13 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch, useSelector} from 'react-redux';
+import {setAllUsers} from '../../store/actions/userActions';
 
 const SignupScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+  const allUsers = useSelector(state => state.user.allUsers);
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -105,7 +109,7 @@ const SignupScreen = ({navigation}) => {
     return password.length >= 6;
   };
 
-  const handleSignup = async () => {
+  const handleSignup = () => {
     if (validateFields()) {
       const userDetails = {
         firstName,
@@ -115,40 +119,20 @@ const SignupScreen = ({navigation}) => {
         password,
       };
 
-      try {
-        const allUsersJSON = await AsyncStorage.getItem('allUserDetails');
-        const allUsers = allUsersJSON ? JSON.parse(allUsersJSON) : [];
+      // Dispatch the action to update the Redux store
+      dispatch(setAllUsers([...allUsers, userDetails]));
 
-        if (allUsers.some(user => user.email === email)) {
-          setEmailError('Email is already registered');
-          return;
-        }
-
-        if (allUsers.some(user => user.username === username)) {
-          setUsernameError('Username is already taken');
-          return;
-        }
-
-        const updatedUsers = [...allUsers, userDetails];
-
-        await AsyncStorage.setItem(
-          'allUserDetails',
-          JSON.stringify(updatedUsers),
-        );
-        Alert.alert(
-          'Signup Successful',
-          'User details saved successfully',
-          [
-            {
-              text: 'OK',
-              onPress: () => navigation.navigate('Landing'),
-            },
-          ],
-          {cancelable: false},
-        );
-      } catch (error) {
-        console.error('Error saving user details', error);
-      }
+      Alert.alert(
+        'Signup Successful',
+        'User details saved successfully',
+        [
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('Landing'),
+          },
+        ],
+        {cancelable: false},
+      );
     }
   };
 

@@ -9,9 +9,13 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch, useSelector} from 'react-redux';
+import {setLoggedInUser} from '../../store/actions/userActions';
 
 const SignInScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+  const allUsers = useSelector(state => state.user.allUsers);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,45 +31,29 @@ const SignInScreen = ({navigation}) => {
     return password.length >= 6;
   };
 
-  const handleSignIn = async () => {
+  const handleSignIn = () => {
     setEmailError('');
     setPasswordError('');
 
-    if (!email) {
-      setEmailError('Email is required');
-    } else if (!isValidEmail(email)) {
+    if (!email || !isValidEmail(email)) {
       setEmailError('Invalid email format');
-    }
-
-    if (!password) {
-      setPasswordError('Password is required');
-    } else if (!isValidPassword(password)) {
-      setPasswordError('Password must be at least 6 characters');
-    }
-
-    if (emailError || passwordError) {
       return;
     }
 
-    try {
-      const allUsersJSON = await AsyncStorage.getItem('allUserDetails');
-      if (!allUsersJSON) {
-        Alert.alert('Sign In Failed', 'No user registered. Please sign up.');
-        return;
-      }
+    if (!password || !isValidPassword(password)) {
+      setPasswordError('Password must be at least 6 characters');
+      return;
+    }
 
-      const allUsers = JSON.parse(allUsersJSON);
-      const matchedUser = allUsers.find(
-        user => user.email === email && user.password === password,
-      );
+    const matchedUser = allUsers.find(
+      user => user.email === email && user.password === password,
+    );
 
-      if (matchedUser) {
-        navigation.navigate('Home', {user: matchedUser});
-      } else {
-        Alert.alert('Sign In Failed', 'Invalid email or password');
-      }
-    } catch (error) {
-      console.error('Error retrieving user details', error);
+    if (matchedUser) {
+      dispatch(setLoggedInUser(matchedUser));
+      navigation.navigate('Home', {user: matchedUser});
+    } else {
+      Alert.alert('Sign In Failed', 'Invalid email or password');
     }
   };
 
@@ -135,13 +123,6 @@ const styles = StyleSheet.create({
     color: 'red',
     marginBottom: 8,
     marginTop: -8,
-  },
-  headerText: {
-    color: 'blue',
-    fontSize: 24,
-    marginBottom: 16,
-    textAlign: 'center',
-    fontWeight: 'bold',
   },
 });
 

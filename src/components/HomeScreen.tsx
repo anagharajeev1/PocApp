@@ -1,17 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  ImageBackground,
-  TouchableOpacity,
-  DrawerLayoutAndroid,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {setLoggedInUser, setAllUsers} from '../../store/actions/userActions';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, StyleSheet, ImageBackground, TouchableOpacity, DrawerLayoutAndroid } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoggedInUser, setAllUsers } from '../../store/actions/userActions';
 
 interface User {
   username: string;
@@ -21,60 +12,30 @@ interface User {
   id: number;
 }
 
-const HomeScreen: React.FC<any> = ({route}) => {
+const HomeScreen: React.FC<any> = ({ route }) => {
   const dispatch = useDispatch();
-  const {loggedInUser, allUsers} = useSelector((state: any) => state.user);
+  const { loggedInUser, allUsers } = useSelector((state: any) => state.user);
   const navigation = useNavigation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  let drawerRef: DrawerLayoutAndroid | null = null; 
+  let drawerRef: DrawerLayoutAndroid | null = null;
 
   useEffect(() => {
-    const fetchLoggedInUser = async () => {
-      try {
-        const userDetailsJSON = await AsyncStorage.getItem('userDetails');
-        if (userDetailsJSON) {
-          const userDetails = JSON.parse(userDetailsJSON);
-          dispatch(setLoggedInUser(userDetails));
-        } else {
-          const {params} = route;
-          if (params && params.user) {
-            dispatch(setLoggedInUser(params.user));
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching logged-in user details', error);
-      }
-    };
+    // No need to fetch user details from AsyncStorage, as it will be handled by redux-persist
+    // Instead, rely on the persisted Redux store
 
-    const fetchAllUsers = async () => {
-      try {
-        const allUsersJSON = await AsyncStorage.getItem('allUserDetails');
-        if (allUsersJSON) {
-          const parsedUsers = JSON.parse(allUsersJSON);
-          dispatch(setAllUsers(parsedUsers));
-        }
-      } catch (error) {
-        console.error('Error fetching all registered users', error);
-      }
-    };
+    // Fetching allUsers from AsyncStorage is also unnecessary due to redux-persist
 
-    fetchLoggedInUser();
-    fetchAllUsers();
   }, [dispatch, route]);
 
   const handleUserTap = (user: User) => {
-    navigation.navigate('UserDetail', {user});
+    navigation.navigate('UserDetail', { user });
   };
 
-  const handleLogout = async () => {
-    try {
-      await AsyncStorage.removeItem('userDetails');
-      navigation.navigate('Landing');
-    } catch (error) {
-      console.error('Error logging out', error);
-    } finally {
-      drawerRef.current?.closeDrawer();
-    }
+  const handleLogout = () => {
+    // Remove the user details directly from the Redux store
+    dispatch(setLoggedInUser(null));
+    navigation.navigate('Landing');
+    drawerRef?.current?.closeDrawer();
   };
 
   const toggleDrawer = (isOpen: boolean) => {
@@ -82,7 +43,7 @@ const HomeScreen: React.FC<any> = ({route}) => {
   };
 
   const openDrawer = () => {
-    drawerRef?.openDrawer(); 
+    drawerRef?.openDrawer();
   };
 
   return (
@@ -110,7 +71,6 @@ const HomeScreen: React.FC<any> = ({route}) => {
               <TouchableOpacity onPress={openDrawer}>
                 <Text style={styles.hamburgerText}>☰</Text>
               </TouchableOpacity>
-
               <Text style={styles.welcomeText}>
                 Welcome, {loggedInUser.firstName || loggedInUser.username}!
               </Text>
@@ -123,7 +83,7 @@ const HomeScreen: React.FC<any> = ({route}) => {
               <FlatList
                 data={allUsers}
                 keyExtractor={(item: User, index) => index.toString()}
-                renderItem={({item}: {item: User}) => (
+                renderItem={({ item }: { item: User }) => (
                   <TouchableOpacity onPress={() => handleUserTap(item)}>
                     <Text
                       style={styles.linkText}
