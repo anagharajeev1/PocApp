@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
-import SignInScreen from '../src/components/SignInScreen';
+import SignInScreen from '../src/screens/SignInScreen';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(),

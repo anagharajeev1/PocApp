@@ -1,11 +1,11 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import LandingScreen from './src/components/LandingScreen';
-import SignupScreen from './src/components/SignupScreen';
-import SignInScreen from './src/components/SignInScreen';
-import HomeScreen from './src/components/HomeScreen';
-import UserDetailScreen from './src/components/UserDetailScreen';
+import LandingScreen from './src/screens/LandingScreen';
+import SignupScreen from './src/screens/SignupScreen';
+import SignInScreen from './src/screens/SignInScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import UserDetailScreen from './src/screens/UserDetailScreen';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './store';

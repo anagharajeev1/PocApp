@@ -4,13 +4,13 @@ import {
   Text,
   TextInput,
   Button,
-  StyleSheet,
   Alert,
   ScrollView,
   ImageBackground,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setAllUsers} from '../../store/actions/userActions';
+import { signupStyles } from '../styling/signupStyles';
 
 const SignupScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -139,12 +139,12 @@ const SignupScreen = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../../images/bg6.jpg')}
-      style={styles.backgroundImage}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.container}>
-          <Text style={styles.label}>First Name</Text>
+      style={signupStyles.backgroundImage}>
+      <ScrollView contentContainerStyle={signupStyles.container}>
+        <View style={signupStyles.container}>
+          <Text style={signupStyles.label}>First Name</Text>
           <TextInput
-            style={styles.input}
+            style={signupStyles.input}
             value={firstName}
             onChangeText={text => {
               setFirstName(text);
@@ -152,11 +152,11 @@ const SignupScreen = ({navigation}) => {
             }}
             accessibilityLabel="First Name"
           />
-          <Text style={styles.errorText}>{firstNameError}</Text>
+          <Text style={signupStyles.errorText}>{firstNameError}</Text>
 
-          <Text style={styles.label}>Last Name</Text>
+          <Text style={signupStyles.label}>Last Name</Text>
           <TextInput
-            style={styles.input}
+            style={signupStyles.input}
             value={lastName}
             onChangeText={text => {
               setLastName(text);
@@ -164,11 +164,11 @@ const SignupScreen = ({navigation}) => {
             }}
             accessibilityLabel="Last Name"
           />
-          <Text style={styles.errorText}>{lastNameError}</Text>
+          <Text style={signupStyles.errorText}>{lastNameError}</Text>
 
-          <Text style={styles.label}>Username</Text>
+          <Text style={signupStyles.label}>Username</Text>
           <TextInput
-            style={styles.input}
+            style={signupStyles.input}
             value={username}
             onChangeText={text => {
               setUsername(text);
@@ -176,11 +176,11 @@ const SignupScreen = ({navigation}) => {
             }}
             accessibilityLabel="Username"
           />
-          <Text style={styles.errorText}>{usernameError}</Text>
+          <Text style={signupStyles.errorText}>{usernameError}</Text>
 
-          <Text style={styles.label}>Email</Text>
+          <Text style={signupStyles.label}>Email</Text>
           <TextInput
-            style={styles.input}
+            style={signupStyles.input}
             value={email}
             onChangeText={text => {
               setEmail(text);
@@ -189,11 +189,11 @@ const SignupScreen = ({navigation}) => {
             keyboardType="email-address"
             accessibilityLabel="Email"
           />
-          <Text style={styles.errorText}>{emailError}</Text>
+          <Text style={signupStyles.errorText}>{emailError}</Text>
 
-          <Text style={styles.label}>Password</Text>
+          <Text style={signupStyles.label}>Password</Text>
           <TextInput
-            style={styles.input}
+            style={signupStyles.input}
             value={password}
             onChangeText={text => {
               setPassword(text);
@@ -202,11 +202,11 @@ const SignupScreen = ({navigation}) => {
             accessibilityLabel="Password"
             secureTextEntry
           />
-          <Text style={styles.errorText}>{passwordError}</Text>
+          <Text style={signupStyles.errorText}>{passwordError}</Text>
 
-          <Text style={styles.label}>Confirm Password</Text>
+          <Text style={signupStyles.label}>Confirm Password</Text>
           <TextInput
-            style={styles.input}
+            style={signupStyles.input}
             value={confirmPassword}
             onChangeText={text => {
               setConfirmPassword(text);
@@ -214,9 +214,9 @@ const SignupScreen = ({navigation}) => {
             }}
             secureTextEntry
           />
-          <Text style={styles.errorText}>{confirmPasswordError}</Text>
+          <Text style={signupStyles.errorText}>{confirmPasswordError}</Text>
 
-          <View style={styles.buttonStyle}>
+          <View style={signupStyles.buttonStyle}>
             <Button title="Signup" onPress={handleSignup} />
           </View>
         </View>
@@ -224,40 +224,5 @@ const SignupScreen = ({navigation}) => {
     </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-  buttonStyle: {marginTop: 19, width: 150, marginLeft: 90},
-  backgroundImage: {
-    flex: 40,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 10,
-  },
-  errorText: {
-    color: 'red',
-    marginBottom: 8,
-    marginTop: -8,
-  },
-  headerText: {
-    color: 'blue',
-    fontSize: 24,
-    marginBottom: 16,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-});
 
 export default SignupScreen;

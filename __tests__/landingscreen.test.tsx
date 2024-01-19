@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
-import LandingScreen from '../src/components/LandingScreen';
+import LandingScreen from '../src/screens/LandingScreen';
 
 describe('LandingScreen', () => {
   it('should navigate to SignIn screen on Login button press', () => {

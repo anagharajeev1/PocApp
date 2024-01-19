@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLoggedInUser} from '../../store/actions/userActions';
+import { signinStyles } from '../styling/sigininStyles';
 
 const SignInScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -60,12 +61,12 @@ const SignInScreen = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../../images/bg6.jpg')}
-      style={styles.backgroundImage}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.container}>
-          <Text style={styles.label}>Email</Text>
+      style={signinStyles.backgroundImage}>
+      <ScrollView contentContainerStyle={signinStyles.container}>
+        <View style={signinStyles.container}>
+          <Text style={signinStyles.label}>Email</Text>
           <TextInput
-            style={styles.input}
+            style={signinStyles.input}
             value={email}
             onChangeText={text => {
               setEmail(text);
@@ -74,11 +75,11 @@ const SignInScreen = ({navigation}) => {
             keyboardType="email-address"
             accessibilityLabel="Email"
           />
-          <Text style={styles.errorText}>{emailError}</Text>
+          <Text style={signinStyles.errorText}>{emailError}</Text>
 
-          <Text style={styles.label}>Password</Text>
+          <Text style={signinStyles.label}>Password</Text>
           <TextInput
-            style={styles.input}
+            style={signinStyles.input}
             value={password}
             onChangeText={text => {
               setPassword(text);
@@ -87,9 +88,9 @@ const SignInScreen = ({navigation}) => {
             secureTextEntry
             accessibilityLabel="Password"
           />
-          <Text style={styles.errorText}>{passwordError}</Text>
+          <Text style={signinStyles.errorText}>{passwordError}</Text>
 
-          <View style={styles.signinStyle}>
+          <View style={signinStyles.signinStyle}>
             <Button title="Sign In" onPress={handleSignIn} />
           </View>
         </View>
@@ -97,33 +98,5 @@ const SignInScreen = ({navigation}) => {
     </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-  backgroundImage: {
-    flex: 40,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
-  signinStyle: {marginTop: 15, width: '60%', alignSelf: 'center'},
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 10,
-  },
-  errorText: {
-    color: 'red',
-    marginBottom: 8,
-    marginTop: -8,
-  },
-});
 
 export default SignInScreen;

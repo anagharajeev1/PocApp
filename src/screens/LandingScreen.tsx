@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Button, ImageBackground, StyleSheet} from 'react-native';
+import {landingStyles} from '../styling/landingStyles';
 
 interface LandingScreenProps {
   navigation: any;
@@ -17,12 +18,12 @@ const LandingScreen: React.FC<LandingScreenProps> = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../../images/bg5.jpg')}
-      style={styles.backgroundImage}>
-      <View style={styles.container}>
-        <View style={styles.loginStyle}>
+      style={landingStyles.backgroundImage}>
+      <View style={landingStyles.container}>
+        <View style={landingStyles.loginStyle}>
           <Button title="Login" onPress={goToLogin} color="mediumturquoise" />
         </View>
-        <View style={styles.signupStyle}>
+        <View style={landingStyles.signupStyle}>
           <Button
             title="Signup"
             onPress={goToRegistration}
@@ -33,26 +34,5 @@ const LandingScreen: React.FC<LandingScreenProps> = ({navigation}) => {
     </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 40,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
-  loginStyle: {marginTop: -16, width: '60%', alignSelf: 'center'},
-  signupStyle: {marginTop: 30, width: '60%', alignSelf: 'center'},
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 16,
-  },
-});
 
 export default LandingScreen;
