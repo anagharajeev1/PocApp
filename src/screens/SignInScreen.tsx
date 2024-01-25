@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  Alert,
-  ScrollView,
-  ImageBackground,
-} from 'react-native';
+import {View, Text, ScrollView, ImageBackground, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLoggedInUser} from '../../store/actions/userActions';
-import { signinStyles } from '../styling/sigininStyles';
+import {signinStyles} from '../styling/sigininStyles';
+import AuthTextInput from '../components/SignIn/AuthTextInput';
+import AuthButton from '../components/SignIn/AuthButton';
 
 const SignInScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -64,9 +57,8 @@ const SignInScreen = ({navigation}) => {
       style={signinStyles.backgroundImage}>
       <ScrollView contentContainerStyle={signinStyles.container}>
         <View style={signinStyles.container}>
-          <Text style={signinStyles.label}>Email</Text>
-          <TextInput
-            style={signinStyles.input}
+          <AuthTextInput
+            label="Email"
             value={email}
             onChangeText={text => {
               setEmail(text);
@@ -74,12 +66,11 @@ const SignInScreen = ({navigation}) => {
             }}
             keyboardType="email-address"
             accessibilityLabel="Email"
+            error={emailError}
           />
-          <Text style={signinStyles.errorText}>{emailError}</Text>
 
-          <Text style={signinStyles.label}>Password</Text>
-          <TextInput
-            style={signinStyles.input}
+          <AuthTextInput
+            label="Password"
             value={password}
             onChangeText={text => {
               setPassword(text);
@@ -87,11 +78,11 @@ const SignInScreen = ({navigation}) => {
             }}
             secureTextEntry
             accessibilityLabel="Password"
+            error={passwordError}
           />
-          <Text style={signinStyles.errorText}>{passwordError}</Text>
 
           <View style={signinStyles.signinStyle}>
-            <Button title="Sign In" onPress={handleSignIn} />
+            <AuthButton title="Sign In" onPress={handleSignIn} />
           </View>
         </View>
       </ScrollView>

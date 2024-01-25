@@ -1,16 +1,10 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  Alert,
-  ScrollView,
-  ImageBackground,
-} from 'react-native';
+import {ScrollView, ImageBackground, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setAllUsers} from '../../store/actions/userActions';
-import { signupStyles } from '../styling/signupStyles';
+import {signupStyles} from '../styling/signupStyles';
+import AuthInput from '../components/SignUp/AuthInput';
+import AuthButton from '../components/SignUp/AuthButton';
 
 const SignupScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -119,7 +113,6 @@ const SignupScreen = ({navigation}) => {
         password,
       };
 
-      // Dispatch the action to update the Redux store
       dispatch(setAllUsers([...allUsers, userDetails]));
 
       Alert.alert(
@@ -141,85 +134,76 @@ const SignupScreen = ({navigation}) => {
       source={require('../../images/bg6.jpg')}
       style={signupStyles.backgroundImage}>
       <ScrollView contentContainerStyle={signupStyles.container}>
-        <View style={signupStyles.container}>
-          <Text style={signupStyles.label}>First Name</Text>
-          <TextInput
-            style={signupStyles.input}
-            value={firstName}
-            onChangeText={text => {
-              setFirstName(text);
-              setFirstNameError('');
-            }}
-            accessibilityLabel="First Name"
-          />
-          <Text style={signupStyles.errorText}>{firstNameError}</Text>
+        <AuthInput
+          label="First Name"
+          value={firstName}
+          onChangeText={text => {
+            setFirstName(text);
+            setFirstNameError('');
+          }}
+          accessibilityLabel="First Name"
+          error={firstNameError}
+        />
 
-          <Text style={signupStyles.label}>Last Name</Text>
-          <TextInput
-            style={signupStyles.input}
-            value={lastName}
-            onChangeText={text => {
-              setLastName(text);
-              setLastNameError('');
-            }}
-            accessibilityLabel="Last Name"
-          />
-          <Text style={signupStyles.errorText}>{lastNameError}</Text>
+        <AuthInput
+          label="Last Name"
+          value={lastName}
+          onChangeText={text => {
+            setLastName(text);
+            setLastNameError('');
+          }}
+          accessibilityLabel="Last Name"
+          error={lastNameError}
+        />
 
-          <Text style={signupStyles.label}>Username</Text>
-          <TextInput
-            style={signupStyles.input}
-            value={username}
-            onChangeText={text => {
-              setUsername(text);
-              setUsernameError('');
-            }}
-            accessibilityLabel="Username"
-          />
-          <Text style={signupStyles.errorText}>{usernameError}</Text>
+        <AuthInput
+          label="Username"
+          value={username}
+          onChangeText={text => {
+            setUsername(text);
+            setUsernameError('');
+          }}
+          accessibilityLabel="Username"
+          error={usernameError}
+        />
 
-          <Text style={signupStyles.label}>Email</Text>
-          <TextInput
-            style={signupStyles.input}
-            value={email}
-            onChangeText={text => {
-              setEmail(text);
-              setEmailError('');
-            }}
-            keyboardType="email-address"
-            accessibilityLabel="Email"
-          />
-          <Text style={signupStyles.errorText}>{emailError}</Text>
+        <AuthInput
+          label="Email"
+          value={email}
+          onChangeText={text => {
+            setEmail(text);
+            setEmailError('');
+          }}
+          keyboardType="email-address"
+          accessibilityLabel="Email"
+          error={emailError}
+        />
 
-          <Text style={signupStyles.label}>Password</Text>
-          <TextInput
-            style={signupStyles.input}
-            value={password}
-            onChangeText={text => {
-              setPassword(text);
-              setPasswordError('');
-            }}
-            accessibilityLabel="Password"
-            secureTextEntry
-          />
-          <Text style={signupStyles.errorText}>{passwordError}</Text>
+        <AuthInput
+          label="Password"
+          value={password}
+          onChangeText={text => {
+            setPassword(text);
+            setPasswordError('');
+          }}
+          accessibilityLabel="Password"
+          secureTextEntry
+          error={passwordError}
+        />
 
-          <Text style={signupStyles.label}>Confirm Password</Text>
-          <TextInput
-            style={signupStyles.input}
-            value={confirmPassword}
-            onChangeText={text => {
-              setConfirmPassword(text);
-              setConfirmPasswordError('');
-            }}
-            secureTextEntry
-          />
-          <Text style={signupStyles.errorText}>{confirmPasswordError}</Text>
+        <AuthInput
+          label="Confirm Password"
+          value={confirmPassword}
+          onChangeText={text => {
+            setConfirmPassword(text);
+            setConfirmPasswordError('');
+          }}
+          accessibilityLabel="Confirm Password"
+          secureTextEntry
+          error={confirmPasswordError}
+        />
 
-          <View style={signupStyles.buttonStyle}>
-            <Button title="Signup" onPress={handleSignup} />
-          </View>
-        </View>
+        <AuthButton title="Signup" onPress={handleSignup} />
       </ScrollView>
     </ImageBackground>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Button, ImageBackground, StyleSheet} from 'react-native';
+import {View, ImageBackground} from 'react-native';
 import {landingStyles} from '../styling/landingStyles';
+import LoginButton from '../components/Landing/LoginButton';
+import SignupButton from '../components/Landing/SignupButton';
 
 interface LandingScreenProps {
   navigation: any;
@@ -21,14 +23,10 @@ const LandingScreen: React.FC<LandingScreenProps> = ({navigation}) => {
       style={landingStyles.backgroundImage}>
       <View style={landingStyles.container}>
         <View style={landingStyles.loginStyle}>
-          <Button title="Login" onPress={goToLogin} color="mediumturquoise" />
+          <LoginButton onPress={goToLogin} />
         </View>
         <View style={landingStyles.signupStyle}>
-          <Button
-            title="Signup"
-            onPress={goToRegistration}
-            color="mediumturquoise"
-          />
+          <SignupButton onPress={goToRegistration} />
         </View>
       </View>
     </ImageBackground>
