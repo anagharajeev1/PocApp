@@ -45,7 +45,7 @@ const SignInScreen = ({navigation}) => {
 
     if (matchedUser) {
       dispatch(setLoggedInUser(matchedUser));
-      navigation.navigate('Home', {user: matchedUser});
+      // navigation.navigate('HomeNavigation', {user: matchedUser});
     } else {
       Alert.alert('Sign In Failed', 'Invalid email or password');
     }
