@@ -1,14 +1,12 @@
 import React from 'react';
 import {View, Image, Text, TouchableOpacity, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import Styles from '../components/Styles';
 import {setLoggedInUser} from '../../store/actions/userActions';
-import {useNavigation} from '@react-navigation/native';
+import {drawerStyles} from '../styling/drawerStyles';
 
 const DrawerMenu = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user.loggedInUser);
-  const navigation = useNavigation();
 
   const handleLogout = async () => {
     try {
@@ -19,25 +17,25 @@ const DrawerMenu = () => {
   };
 
   return (
-    <View style={Styles.drawerContainer}>
-      <View style={Styles.drawerHeader}>
+    <View style={drawerStyles.drawerContainer}>
+      <View style={drawerStyles.drawerHeader}>
         <Image
           source={require('../components/assets/user.png')}
-          style={Styles.drawerIcon}
+          style={drawerStyles.drawerIcon}
         />
-        <Text style={Styles.drawerHeaderText}>
+        <Text style={drawerStyles.drawerHeaderText}>
           {user?.firstName + ' ' + user?.lastName}
         </Text>
       </View>
       <TouchableOpacity
-        style={Styles.drawerItem}
+        style={drawerStyles.drawerItem}
         onPress={handleLogout}
         activeOpacity={0.7}>
         <Image
           source={require('../components/assets/logout-icon.png')}
-          style={Styles.drawerIcon}
+          style={drawerStyles.drawerIcon}
         />
-        <Text style={Styles.drawerItemText}>Logout</Text>
+        <Text style={drawerStyles.drawerItemText}>Logout</Text>
       </TouchableOpacity>
     </View>
   );

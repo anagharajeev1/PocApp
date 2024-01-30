@@ -24,18 +24,14 @@ const HomeScreen: React.FC<any> = ({route}) => {
   const {loggedInUser, allUsers} = useSelector((state: any) => state.user);
   const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   // Add any necessary useEffect logic here
-  // }, [dispatch, route]);
-
   const handleUserTap = (user: User) => {
     navigation.navigate('UserDetails', {user});
   };
 
-  const handleLogout = () => {
-    dispatch(setLoggedInUser(null));
-    navigation.navigate('Landing');
-  };
+  // const handleLogout = () => {
+  //   dispatch(setLoggedInUser(null));
+  //   navigation.navigate('Landing');
+  // };
 
   return (
     <ImageBackground
@@ -70,14 +66,6 @@ const HomeScreen: React.FC<any> = ({route}) => {
                 </TouchableOpacity>
               )}
             />
-          </View>
-        )}
-
-        {loggedInUser && (
-          <View>
-            <TouchableOpacity onPress={handleLogout}>
-              <Text style={homeStyles.menuItem}>Logout</Text>
-            </TouchableOpacity>
           </View>
         )}
       </View>
