@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {setLoggedInUser, setAllUsers} from '../../store/actions/userActions';
 import {homeStyles} from '../styling/homeStyles';
 
 interface User {
@@ -20,7 +19,6 @@ interface User {
 }
 
 const HomeScreen: React.FC<any> = ({route}) => {
-  const dispatch = useDispatch();
   const {loggedInUser, allUsers} = useSelector((state: any) => state.user);
   const navigation = useNavigation();
 
@@ -28,14 +26,9 @@ const HomeScreen: React.FC<any> = ({route}) => {
     navigation.navigate('UserDetails', {user});
   };
 
-  // const handleLogout = () => {
-  //   dispatch(setLoggedInUser(null));
-  //   navigation.navigate('Landing');
-  // };
-
   return (
     <ImageBackground
-      source={require('../../images/bg6.jpg')}
+      source={require('../../src/components/assets/bg6.jpg')}
       style={homeStyles.backgroundImage}>
       <View style={homeStyles.container}>
         {loggedInUser && (

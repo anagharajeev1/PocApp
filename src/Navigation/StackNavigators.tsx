@@ -3,9 +3,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LandingScreen from '../screens/LandingScreen';
 import SignupScreen from '../screens/SignupScreen';
 import SignInScreen from '../screens/SignInScreen';
+import {registerHeaderStyle, signInHeaderStyle} from '../styling/stackStyles';
 
 const NavigationStack = () => {
   const Stack = createNativeStackNavigator();
+
   return (
     <Stack.Navigator screenOptions={{headerShown: true}}>
       <Stack.Screen
@@ -18,16 +20,7 @@ const NavigationStack = () => {
         name="Signup"
         component={SignupScreen}
         options={{
-          headerStyle: {
-            backgroundColor: 'white',
-            height: 60,
-          },
-          headerTintColor: 'green',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize: 25,
-            marginLeft: 150,
-          },
+          ...registerHeaderStyle,
           headerTitle: 'Register here!',
         }}
       />
@@ -35,16 +28,7 @@ const NavigationStack = () => {
         name="SignIn"
         component={SignInScreen}
         options={{
-          headerStyle: {
-            backgroundColor: 'white',
-            height: 60,
-          },
-          headerTintColor: 'green',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize: 25,
-            marginLeft: 67,
-          },
+          ...signInHeaderStyle,
           headerTitle: 'Sign in',
         }}
       />

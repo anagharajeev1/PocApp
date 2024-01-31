@@ -7,15 +7,12 @@ import { userStyles } from '../styling/userStyles';
 const UserDetailScreen: React.FC<any> = ({ route }) => {
   const { user } = route.params;
   const dispatch = useDispatch();
-  const { allUsers } = useSelector((state: any) => state.user);
+  useSelector((state: any) => state.user);
   const [updatedUsername, setUpdatedUsername] = useState(user.username);
   const [isEditMode, setIsEditMode] = useState(false);
 
   const handleUpdateUsername = () => {
     const updatedUserDetails = { ...user, username: updatedUsername };
-    const updatedAllUsers = allUsers.map(u =>
-      u.email === user.email ? updatedUserDetails : u,
-    );
 
     dispatch(updateUsername(user.email, updatedUsername));
 

@@ -15,11 +15,10 @@
 
 // export default Navigators;
 
-
 import React from 'react';
 import DrawerNavigators from './DrawerNavigators';
 import StackNavigators from './StackNavigators';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const Navigators = () => {
   const loggedInUser = useSelector((state: any) => state.user.loggedInUser);

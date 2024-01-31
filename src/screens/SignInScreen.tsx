@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, ScrollView, ImageBackground, Alert} from 'react-native';
+import {View, ScrollView, ImageBackground, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLoggedInUser} from '../../store/actions/userActions';
 import {signinStyles} from '../styling/sigininStyles';
 import AuthTextInput from '../components/SignIn/AuthTextInput';
 import AuthButton from '../components/SignIn/AuthButton';
 
-const SignInScreen = ({navigation}) => {
+const SignInScreen = ({}) => {
   const dispatch = useDispatch();
   const allUsers = useSelector(state => state.user.allUsers);
 
@@ -45,7 +45,6 @@ const SignInScreen = ({navigation}) => {
 
     if (matchedUser) {
       dispatch(setLoggedInUser(matchedUser));
-      // navigation.navigate('HomeNavigation', {user: matchedUser});
     } else {
       Alert.alert('Sign In Failed', 'Invalid email or password');
     }
@@ -53,7 +52,7 @@ const SignInScreen = ({navigation}) => {
 
   return (
     <ImageBackground
-      source={require('../../images/bg6.jpg')}
+      source={require('../../src/components/assets/bg6.jpg')}
       style={signinStyles.backgroundImage}>
       <ScrollView contentContainerStyle={signinStyles.container}>
         <View style={signinStyles.container}>

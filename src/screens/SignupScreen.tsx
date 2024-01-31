@@ -131,7 +131,7 @@ const SignupScreen = ({navigation}) => {
 
   return (
     <ImageBackground
-      source={require('../../images/bg6.jpg')}
+      source={require('../../src/components/assets/bg6.jpg')}
       style={signupStyles.backgroundImage}>
       <ScrollView contentContainerStyle={signupStyles.container}>
         <AuthInput

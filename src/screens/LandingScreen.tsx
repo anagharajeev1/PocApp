@@ -19,7 +19,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({navigation}) => {
 
   return (
     <ImageBackground
-      source={require('../../images/bg5.jpg')}
+      source={require('../components/assets/bg5.jpg')}
       style={landingStyles.backgroundImage}>
       <View style={landingStyles.container}>
         <View style={landingStyles.loginStyle}>
