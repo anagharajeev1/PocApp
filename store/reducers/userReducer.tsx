@@ -23,7 +23,6 @@ const userReducer = (state = initialState, action: any) => {
     case 'SET_ALL_USERS':
       return {...state, allUsers: action.payload};
     case 'UPDATE_USERNAME':
-      console.log('Payload:', action.payload);
       const {email, newUsername} = action.payload;
 
       const updatedAllUsers = state.allUsers.map((user: User) =>
@@ -32,9 +31,6 @@ const userReducer = (state = initialState, action: any) => {
 
       return {
         ...state,
-        loggedInUser: state.loggedInUser
-          ? {...state.loggedInUser, username: newUsername}
-          : state.loggedInUser,
         allUsers: updatedAllUsers,
       };
     default:

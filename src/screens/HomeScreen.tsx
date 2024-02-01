@@ -9,14 +9,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {homeStyles} from '../styling/homeStyles';
-
-interface User {
-  username: string;
-  email: string;
-  firstName?: string;
-  lastName?: string;
-  id: number;
-}
+import { User } from '../components/reused/Interface';
 
 const HomeScreen: React.FC<any> = ({route}) => {
   const {loggedInUser, allUsers} = useSelector((state: any) => state.user);

@@ -1,53 +1,43 @@
 import React, {useState} from 'react';
-import {View, ScrollView, ImageBackground, Alert} from 'react-native';
+import {View, ScrollView, ImageBackground} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {setLoggedInUser} from '../../store/actions/userActions';
 import {signinStyles} from '../styling/sigininStyles';
 import AuthTextInput from '../components/screen_reused/SignIn/AuthTextInput';
 import AuthButton from '../components/screen_reused/SignIn/AuthButton';
+import {handleSignIn} from '../components/screen_reused/SignIn/AuthUtils';
+import {User} from '../components/reused/Interface';
 
-const SignInScreen = ({}) => {
+const SignInScreen: React.FC = () => {
   const dispatch = useDispatch();
-  const allUsers = useSelector(state => state.user.allUsers);
+  const allUsers = useSelector(
+    (state: {user: {allUsers: User[]}}) => state.user.allUsers,
+  );
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState<string>('');
+  const [passwordError, setPasswordError] = useState<string>('');
 
-  const isValidEmail = email => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const isValidPassword = password => {
-    return password.length >= 6;
-  };
-
-  const handleSignIn = () => {
+  const onEmailChange = (text: string): void => {
+    setEmail(text);
     setEmailError('');
+  };
+
+  const onPasswordChange = (text: string): void => {
+    setPassword(text);
     setPasswordError('');
+  };
 
-    if (!email || !isValidEmail(email)) {
-      setEmailError('Invalid email format');
-      return;
-    }
-
-    if (!password || !isValidPassword(password)) {
-      setPasswordError('Password must be at least 6 characters');
-      return;
-    }
-
-    const matchedUser = allUsers.find(
-      user => user.email === email && user.password === password,
+  const handleSignInPress = (): void => {
+    handleSignIn(
+      dispatch,
+      allUsers,
+      email,
+      password,
+      setEmailError,
+      setPasswordError,
     );
-
-    if (matchedUser) {
-      dispatch(setLoggedInUser(matchedUser));
-    } else {
-      Alert.alert('Sign In Failed', 'Invalid email or password');
-    }
   };
 
   return (
@@ -59,10 +49,7 @@ const SignInScreen = ({}) => {
           <AuthTextInput
             label="Email"
             value={email}
-            onChangeText={text => {
-              setEmail(text);
-              setEmailError('');
-            }}
+            onChangeText={onEmailChange}
             keyboardType="email-address"
             accessibilityLabel="Email"
             error={emailError}
@@ -71,17 +58,14 @@ const SignInScreen = ({}) => {
           <AuthTextInput
             label="Password"
             value={password}
-            onChangeText={text => {
-              setPassword(text);
-              setPasswordError('');
-            }}
+            onChangeText={onPasswordChange}
             secureTextEntry
             accessibilityLabel="Password"
             error={passwordError}
           />
 
           <View style={signinStyles.signinStyle}>
-            <AuthButton title="Sign In" onPress={handleSignIn} />
+            <AuthButton title="Sign In" onPress={handleSignInPress} />
           </View>
         </View>
       </ScrollView>

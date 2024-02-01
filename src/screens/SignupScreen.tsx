@@ -5,10 +5,11 @@ import {setAllUsers} from '../../store/actions/userActions';
 import {signupStyles} from '../styling/signupStyles';
 import AuthInput from '../components/assets/SignUp/AuthInput';
 import AuthButton from '../components/assets/SignUp/AuthButton';
+import {validateFields} from '../components/screen_reused/Signup/validationUtils';
 
-const SignupScreen = ({navigation}) => {
+const SignupScreen: React.FC<{navigation: any}> = ({navigation}) => {
   const dispatch = useDispatch();
-  const allUsers = useSelector(state => state.user.allUsers);
+  const allUsers = useSelector((state: any) => state.user.allUsers);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -24,87 +25,17 @@ const SignupScreen = ({navigation}) => {
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-  const validateFields = () => {
-    let isValid = true;
-    setFirstNameError('');
-    setLastNameError('');
-    setUsernameError('');
-    setEmailError('');
-    setPasswordError('');
-    setConfirmPasswordError('');
-
-    if (!firstName) {
-      setFirstNameError('First Name is required');
-      isValid = false;
-    } else if (!isValidName(firstName)) {
-      setFirstNameError('Invalid First Name');
-      isValid = false;
-    }
-
-    if (!lastName) {
-      setLastNameError('Last Name is required');
-      isValid = false;
-    } else if (!isValidName(lastName)) {
-      setLastNameError('Invalid Last Name');
-      isValid = false;
-    }
-
-    if (!username) {
-      setUsernameError('Username is required');
-      isValid = false;
-    } else if (!isValidUsername(username)) {
-      setUsernameError('Invalid Username');
-      isValid = false;
-    }
-
-    if (!email) {
-      setEmailError('Email is required');
-      isValid = false;
-    } else if (!isValidEmail(email)) {
-      setEmailError('Please enter a valid email address');
-      isValid = false;
-    }
-
-    if (!password) {
-      setPasswordError('Password is required');
-      isValid = false;
-    } else if (!isValidPassword(password)) {
-      setPasswordError('Password must be at least 6 characters long');
-      isValid = false;
-    }
-
-    if (!confirmPassword) {
-      setConfirmPasswordError('Confirm Password is required');
-      isValid = false;
-    } else if (confirmPassword !== password) {
-      setConfirmPasswordError('Passwords do not match');
-      isValid = false;
-    }
-
-    return isValid;
-  };
-
-  const isValidName = name => {
-    const nameRegex = /^[A-Za-z]+$/;
-    return nameRegex.test(name);
-  };
-
-  const isValidUsername = username => {
-    const usernameRegex = /^[a-zA-Z0-9]+$/;
-    return usernameRegex.test(username);
-  };
-
-  const isValidEmail = email => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const isValidPassword = password => {
-    return password.length >= 6;
-  };
-
   const handleSignup = () => {
-    if (validateFields()) {
+    const {isValid, errors} = validateFields(
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+      confirmPassword,
+    );
+
+    if (isValid) {
       const userDetails = {
         firstName,
         lastName,
@@ -126,6 +57,13 @@ const SignupScreen = ({navigation}) => {
         ],
         {cancelable: false},
       );
+    } else {
+      setFirstNameError(errors.firstName);
+      setLastNameError(errors.lastName);
+      setUsernameError(errors.username);
+      setEmailError(errors.email);
+      setPasswordError(errors.password);
+      setConfirmPasswordError(errors.confirmPassword);
     }
   };
 
