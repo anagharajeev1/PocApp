@@ -1,6 +1,6 @@
 import React from 'react';
-import { TextInput, Text } from 'react-native';
-import { signinStyles } from '../../styling/sigininStyles';
+import {TextInput, Text} from 'react-native';
+import {signinStyles} from '../../../styling/sigininStyles';
 
 interface AuthTextInputProps {
   label: string;
@@ -27,7 +27,7 @@ const AuthTextInput: React.FC<AuthTextInputProps> = ({
       <TextInput
         style={signinStyles.input}
         value={value}
-        onChangeText={(text) => {
+        onChangeText={text => {
           onChangeText(text);
         }}
         secureTextEntry={secureTextEntry}

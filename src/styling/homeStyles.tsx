@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export const homeStyles = StyleSheet.create({
   container: {
     padding: 16,
+    flex: 1,
   },
   backgroundImage: {
     flex: 10,
@@ -54,5 +55,13 @@ export const homeStyles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 4,
     marginTop: 12,
+  },
+
+  userContainer: {
+    borderColor: 'black', // Adjust the color as needed
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 8, // Optional: add border radius for rounded corners
   },
 });

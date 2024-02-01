@@ -3,8 +3,8 @@ import {ScrollView, ImageBackground, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setAllUsers} from '../../store/actions/userActions';
 import {signupStyles} from '../styling/signupStyles';
-import AuthInput from '../components/SignUp/AuthInput';
-import AuthButton from '../components/SignUp/AuthButton';
+import AuthInput from '../components/assets/SignUp/AuthInput';
+import AuthButton from '../components/assets/SignUp/AuthButton';
 
 const SignupScreen = ({navigation}) => {
   const dispatch = useDispatch();

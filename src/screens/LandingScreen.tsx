@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, ImageBackground} from 'react-native';
 import {landingStyles} from '../styling/landingStyles';
-import LoginButton from '../components/Landing/LoginButton';
-import SignupButton from '../components/Landing/SignupButton';
+import LoginButton from '../components/screen_reused/Landing/LoginButton';
+import SignupButton from '../components/screen_reused/Landing/SignupButton';
 
 interface LandingScreenProps {
   navigation: any;

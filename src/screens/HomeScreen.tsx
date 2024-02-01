@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {homeStyles} from '../styling/homeStyles';
 
 interface User {
@@ -29,7 +29,8 @@ const HomeScreen: React.FC<any> = ({route}) => {
   return (
     <ImageBackground
       source={require('../../src/components/assets/bg6.jpg')}
-      style={homeStyles.backgroundImage}>
+      style={homeStyles.backgroundImage}
+      resizeMode="cover">
       <View style={homeStyles.container}>
         {loggedInUser && (
           <View>
@@ -49,13 +50,13 @@ const HomeScreen: React.FC<any> = ({route}) => {
               keyExtractor={(item: User, index) => index.toString()}
               renderItem={({item}: {item: User}) => (
                 <TouchableOpacity onPress={() => handleUserTap(item)}>
-                  <Text
-                    style={homeStyles.linkText}
-                    onPress={() => handleUserTap(item)}>
-                    {item.firstName} {item.lastName} - {item.username}
-                    {'\n'}
-                    {item.email}
-                  </Text>
+                  <View style={homeStyles.userContainer}>
+                    <Text style={homeStyles.linkText}>
+                      {item.firstName} {item.lastName} - {item.username}
+                      {'\n'}
+                      {item.email}
+                    </Text>
+                  </View>
                 </TouchableOpacity>
               )}
             />

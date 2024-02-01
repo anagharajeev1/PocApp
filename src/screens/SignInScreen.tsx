@@ -3,8 +3,8 @@ import {View, ScrollView, ImageBackground, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLoggedInUser} from '../../store/actions/userActions';
 import {signinStyles} from '../styling/sigininStyles';
-import AuthTextInput from '../components/SignIn/AuthTextInput';
-import AuthButton from '../components/SignIn/AuthButton';
+import AuthTextInput from '../components/screen_reused/SignIn/AuthTextInput';
+import AuthButton from '../components/screen_reused/SignIn/AuthButton';
 
 const SignInScreen = ({}) => {
   const dispatch = useDispatch();
